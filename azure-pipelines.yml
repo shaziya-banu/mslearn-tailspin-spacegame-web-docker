@@ -26,6 +26,10 @@ stages:
         containerRegistry: 'Container Registry Connection'
         tags: |
           $(tag)
+          variables:
+             wwwrootDir: 'Tailspin.SpaceGame.Web/wwwroot'
+             dotnetSdkVersion: '3.1.100'
+
          
 
     
@@ -75,10 +79,7 @@ stages:
 
     - publish: '$(Build.ArtifactStagingDirectory)'
       artifact: drop
-      variables:
-      wwwrootDir: 'Tailspin.SpaceGame.Web/wwwroot'
-      dotnetSdkVersion: '3.1.100'
-
+      
 - stage: 'Deploy'
   displayName: 'Deploy the container'
   dependsOn: Build
